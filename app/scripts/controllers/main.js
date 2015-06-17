@@ -8,7 +8,13 @@
  * Controller of the aggieFeedApp
  */
 
-angular.module('mytodoApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.todos = ['Item 1', 'Item 2', 'Item 33'];
-  });
+angular.module('aggieFeedApp')
+  .controller('MainCtrl', ['$scope', '$http', 'myFactory',
+    function ($scope, $http, myFactory) {
+
+    myFactory.getSource(function(data){
+      $scope.data = data;
+    });
+
+
+  }]);
