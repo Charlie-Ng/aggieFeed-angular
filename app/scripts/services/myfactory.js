@@ -13,29 +13,30 @@ angular.module('aggieFeedApp')
     // Service logic
     // ...
 
-    var responseData = $http.get('http://api.openweathermap.org/data/2.5/find?lat=38.55391&lon=-121.7381&cnt=10');
+    var dynURL = 'http://api.openweathermap.org/data/2.5/find?lat=38.55391&lon=-121.7381&cnt=';
     var json = [];
     // Public API here
     return {
-      getSource: function (callback) {
+      getSource: function (callback, num) {
+        var responseData = $http.get(dynURL + num);
         responseData.success(function(data){
-          for(var i = 0; i < data.count; i++){
-            json[i]=
+          for(var i = data.count - 1; i >= 0; i--){
+            json[data.count - 1 - i]=
             {
               "activity" : {
-                "icon": "icon-comment-alt",
+                "icon": data.list[i].weather[0].id,
                 "actor": {
                   "id" : data.list[i].id,
-                  "objectType": "weather",
+                  "objectType": data.list[i].weather[0].main,
                   "displayName": data.list[i].name,
                   "author" : {
                     "id" : "weather",
-                    "displayName" : data.list[i].weather.description
-                  },
+                    "displayName" : data.list[i].weather[0].description
+                  },//end of author
                   "image" : {
                     "color" : "#f1c40f"
-                  }
-                },
+                  }//end of image
+                },//end of actor
                 "verb": "post",
                 "title": "Test Event",
                 "object": {
@@ -58,12 +59,12 @@ angular.module('aggieFeedApp')
                   "location" : {
                     "displayName": "coord",
                     "geo" : {
-                      "latitude": data.list[i].lat,
-                      "longitude": data.list[i].lon
+                      "latitude": data.list[i].coord.lat,
+                      "longitude": data.list[i].coord.lon
                     },
                     "geometry" : {
                       "type": "Point",
-                      "coordinates": [data.list[i].lon, data.list[i].lat]
+                      "coordinates": [data.list[i].coord.lon,  data.list[i].coord.lat]
                     }
                   }
                 },
@@ -80,10 +81,9 @@ angular.module('aggieFeedApp')
                   "endDate" : "date string"
                 }
               }};
-
-          }
+          }//end for loop
           callback(json);
         });
-      }
+      }//end of getSource
     };
   }]);

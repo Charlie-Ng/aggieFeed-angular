@@ -1,9 +1,15 @@
 <div class="container" >
-  <md-button class="md-raised md-primary">one more city!</md-button>
-  <div ng-repeat="dd in data">
-    <ul ng-repeat="(key, value) in dd">
-      <li>{{key}}: {{value}}</li>
+  <md-button class="md-raised md-primary" ng-click="show()">one more city!</md-button>
+  <div class="weatherContent" ng-repeat="dd in data">
+    <div class="createTime" create-time></div>
+    <ul>
+      <li>City: <span style="font-weight: bold;">{{dd.activity.actor.displayName}}</span></li>
+      <li>Weather: {{dd.activity.actor.objectType}}</li>
+      <li>Condition: {{dd.activity.actor.author.displayName}}</li>
+      <li>Latiude {{dd.activity.object.location.geo.latitude}}</li>
+      <li>Longitude: {{dd.activity.object.location.geo.longitude}}</li>
     </ul>
+
     <md-divider ></md-divider>
   </div>
 

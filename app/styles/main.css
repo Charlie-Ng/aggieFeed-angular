@@ -7,6 +7,7 @@
 
 body {
   padding: 0;
+  text-align:center;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -87,5 +88,15 @@ body {
 li{
   list-style-type: none;
 }
+
+.weatherContent{
+  text-align: left;
+}
+
+.createTime{
+  text-align:center;
+  color: dimgray;
+}
+
 
 
