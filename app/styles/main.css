@@ -93,7 +93,12 @@ li{
   text-align: left;
 }
 
-.createTime{
+/*.createTime{*/
+  /*text-align:center;*/
+  /*color: dimgray;*/
+/*}*/
+
+create-time{
   text-align:center;
   color: dimgray;
 }

@@ -1,7 +1,8 @@
 <div class="container" >
   <md-button class="md-raised md-primary" ng-click="show()">one more city!</md-button>
   <div class="weatherContent" ng-repeat="dd in data">
-    <div class="createTime" create-time></div>
+    <!--<div class="createTime" create-time></div>-->
+    <create-time></create-time>
     <ul>
       <li>City: <span style="font-weight: bold;">{{dd.activity.actor.displayName}}</span></li>
       <li>Weather: {{dd.activity.actor.objectType}}</li>
